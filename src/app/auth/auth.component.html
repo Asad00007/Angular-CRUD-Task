@@ -1,0 +1,144 @@
+<div class="mains">
+  <div class="box1">
+    <h1 class="selected-item">{{ isLogin ? "LOGIN" : "SIGN UP" }}</h1>
+    <app-alert-modal
+      *ngIf="errorMessage !== null"
+      [errorMessages]="errorMessage"
+      (close)="errorMessage = null"
+    ></app-alert-modal>
+    <form
+      class="form1"
+      *ngIf="isLogin === false"
+      [formGroup]="signUpForm"
+      (ngSubmit)="onSignup()"
+    >
+      <label for="name">Name</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        placeholder="John Doe"
+        formControlName="name"
+      />
+      <div
+        style="color: red"
+        *ngIf="!signUpForm.get('name').valid && signUpForm.get('name').touched"
+      >
+        Username should be atleast 3 characters long
+      </div>
+      <label for="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="johndoe@gmail.com"
+        formControlName="email"
+      />
+      <span
+        style="color: red"
+        *ngIf="
+          !signUpForm.get('email').valid && signUpForm.get('email').touched
+        "
+        >Please Enter A Valid Email</span
+      >
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        formControlName="password"
+        placeholder="*******"
+      />
+      <span
+        style="color: red"
+        *ngIf="
+          !signUpForm.get('password').valid &&
+          signUpForm.get('password').touched
+        "
+        >Password must be atleast 7 characters long</span
+      >
+      <label for="contact">Contact Number</label>
+      <input
+        type="text"
+        name="contact"
+        id="contact"
+        placeholder="+921234567890"
+        formControlName="contact"
+      />
+      <span
+        style="color: red"
+        *ngIf="
+          !signUpForm.get('contact').valid && signUpForm.get('contact').touched
+        "
+        >Please Enter Correct Contact Number</span
+      >
+      <button
+        type="submit"
+        [disabled]="!signUpForm.valid"
+        [ngStyle]="{
+          opacity: !signUpForm.valid ? '50%' : '100%',
+          cursor: !isLoading ? 'pointer' : 'not-allowed'
+        }"
+      >
+        <ng-container *ngIf="isLoading; else signUpText">
+          <app-loading-spinner></app-loading-spinner>
+        </ng-container>
+        <ng-template #signUpText>Sign Up</ng-template>
+      </button>
+      <p style="text-align: center; cursor: pointer">
+        Already have an account?<span
+          style="text-decoration: underline"
+          (click)="onToggleChange()"
+        >
+          Login</span
+        >
+      </p>
+    </form>
+    <form
+      class="form1"
+      *ngIf="isLogin === true"
+      [formGroup]="loginForm"
+      (ngSubmit)="onLogin()"
+    >
+      <label for="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        formControlName="email"
+        placeholder="johndoe@gmail.com"
+      />
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        formControlName="password"
+        placeholder="*******"
+      />
+
+      <button
+        type="submit"
+        [disabled]="!loginForm.valid"
+        [ngStyle]="{
+          opacity: !loginForm.valid ? '50%' : '100%',
+          cursor: !isLoading ? 'pointer' : 'not-allowed'
+        }"
+        style="display: flex; align-items: center; justify-content: center"
+      >
+        <ng-container *ngIf="isLoading; else loginText">
+          <app-loading-spinner></app-loading-spinner>
+        </ng-container>
+        <ng-template #loginText>Login</ng-template>
+      </button>
+      <p style="text-align: center; cursor: pointer">
+        Don't have an account?<span
+          style="text-decoration: underline"
+          (click)="onToggleChange()"
+        >
+          Signup</span
+        >
+      </p>
+    </form>
+  </div>
+</div>

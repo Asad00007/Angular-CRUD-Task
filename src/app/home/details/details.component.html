@@ -1,0 +1,16 @@
+<div class="top-container">
+  <a routerLink="/">Back</a>
+  <h2>Name</h2>
+  <p>{{ postDetails.name }}</p>
+  <h2>Description</h2>
+  <p>{{ postDetails.description }}</p>
+  <h2>Image</h2>
+  <img
+    [src]="
+      postDetails.image_path ||
+      'https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png'
+    "
+    alt=""
+    class="image"
+  />
+</div>

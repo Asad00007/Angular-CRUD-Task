@@ -1,0 +1,18 @@
+<nav class="navbar1">
+  <div class="navbar2">
+    <a routerLink="/">
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfhlR4c4_OG0E8ZiBX2ZRct6UR74Z6rNGtuQ&s"
+        alt=""
+        height="100px"
+      />
+    </a>
+
+    <a routerLink="/login">
+      <button class="button1" *ngIf="!isAuthenticated">Login</button>
+    </a>
+    <button class="button1" *ngIf="isAuthenticated" (click)="onLogout()">
+      Logout
+    </button>
+  </div>
+</nav>

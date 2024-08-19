@@ -1,0 +1,16 @@
+.top-container{
+    width: 1300px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px 10px;
+}
+p{
+    opacity: 70%;
+}
+.image{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgb(236, 235, 235);
+    object-fit: cover;
+}

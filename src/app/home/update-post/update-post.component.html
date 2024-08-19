@@ -1,0 +1,38 @@
+<div class="create-main">
+  <div class="create-center">
+    <h1>Edit Post</h1>
+    <form class="form1" [formGroup]="updatePostForm" (ngSubmit)="update()">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        formControlName="name"
+        name="name"
+        id="name"
+        placeholder="John Doe"
+      />
+      <label for="description">Description</label>
+      <textarea
+        type="text"
+        name="description"
+        formControlName="description"
+        id="name"
+        placeholder="Write something..."
+        rows="8"
+      ></textarea>
+      <label for="imagePath">Image Path</label>
+      <input
+        type="file"
+        name="imagePath"
+        id="imagePath"
+        formControlName="image_path"
+      />
+
+      <div class="buttons">
+        <button class="cancel" type="button" (click)="cancelPosts()">
+          Cancel
+        </button>
+        <button type="submit">Update</button>
+      </div>
+    </form>
+  </div>
+</div>
