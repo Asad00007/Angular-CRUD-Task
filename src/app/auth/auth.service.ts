@@ -67,7 +67,7 @@ export class AuthService {
   autoLogout(expirationDuration: number) {
     this.tokenExpirationTimer = setTimeout(() => {
       this.logout();
-      alert('You have been Logged out, Please Login again to see posts');
+      // alert('You have been Logged out, Please Login again to see posts');
     }, expirationDuration);
   }
   logout() {
