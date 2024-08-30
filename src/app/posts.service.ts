@@ -12,18 +12,15 @@ export class PostService {
   createPost(
     name: string,
     description: string,
-    image_path: string,
+    image_path: File,
     options?: any
   ) {
-    return this.http.post(
-      'http://127.0.0.1:8000/api/posts',
-      {
-        name: name,
-        description: description,
-        image_path: image_path,
-      },
-      options
-    );
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('description', description);
+    formData.append('image_path', image_path); // Appending the file here
+
+    return this.http.post('http://127.0.0.1:8000/api/posts', formData, options);
   }
 
   updatePost(
@@ -33,13 +30,14 @@ export class PostService {
     image_path: File,
     options?: any
   ) {
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('description', description);
+    formData.append('image_path', image_path); // Appending the file here
+
     return this.http.put(
       `http://127.0.0.1:8000/api/posts/${id}`,
-      {
-        name: name,
-        description: description,
-        image_path: image_path,
-      },
+      formData,
       options
     );
   }

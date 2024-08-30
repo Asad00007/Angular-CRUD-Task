@@ -13,7 +13,7 @@ export class CreatePostComponent implements OnInit {
   constructor(private postService: PostService) {}
   createPostForm: FormGroup;
   token;
-
+  selectedFile: File;
   cancelPosts() {
     this.cancelPost.emit();
   }
@@ -29,19 +29,22 @@ export class CreatePostComponent implements OnInit {
     this.token = accessToken;
   }
 
+  onSelectedFile(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
   create() {
     if (!this.createPostForm.valid) {
       alert('Please fill out all fields');
     } else {
       const name = this.createPostForm.value.name;
       const description = this.createPostForm.value.description;
-      const image_path = this.createPostForm.value.image_path;
+      const image_path = this.selectedFile;
+      // const image_path = this.createPostForm.value.image_path;
 
       if (this.postService.allPosts1.includes((item) => item.name === name)) {
-        console.log('yes');
         alert('Post with same name already exists');
       } else {
-        console.log('no');
         const headers = new HttpHeaders({
           Authorization: `Bearer ${this.token}`,
         });

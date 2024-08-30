@@ -12,6 +12,7 @@ export class UpdatePostComponent implements OnInit {
   @Output() cancelPost = new EventEmitter<boolean>();
   @Input() selectedPost;
   token;
+  selectedFile: File;
 
   cancelPosts() {
     this.cancelPost.emit();
@@ -34,6 +35,11 @@ export class UpdatePostComponent implements OnInit {
     const accessToken = userData?.access_token;
     this.token = accessToken;
   }
+
+  onSelectedFile(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
   update() {
     if (!this.updatePostForm.valid) {
       alert('Please fill out all fields');
@@ -41,7 +47,8 @@ export class UpdatePostComponent implements OnInit {
       const id = this.selectedPost.id;
       const name = this.updatePostForm.value.name;
       const description = this.updatePostForm.value.description;
-      const image_path = this.updatePostForm.value.image_path;
+      // const image_path = this.updatePostForm.value.image_path;
+      const image_path = this.selectedFile;
 
       const headers = new HttpHeaders({
         Authorization: `Bearer ${this.token}`,

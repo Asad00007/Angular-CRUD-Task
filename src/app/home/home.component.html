@@ -32,10 +32,7 @@
         <!-- <td>{{ item.image_path }}</td> -->
         <td>
           <img
-            [src]="
-              item.image_path ||
-              'https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png'
-            "
+            [src]="'http://127.0.0.1:8000/' + item.image_path"
             alt=""
             style="
               width: 32px;
@@ -80,7 +77,10 @@
   <div class="pagination1">
     <div class="pagination">
       <button
-        [ngStyle]="{ background: pageNumber === 1 ? 'rgb(214, 212, 212)' : '' }"
+        [ngStyle]="{
+          background: pageNumber === 1 ? 'rgb(214, 212, 212)' : '',
+          cursor: pageNumber === 1 ? 'not-allowed' : ''
+        }"
         (click)="pageNumber = 1; pageChange()"
       >
         First
@@ -88,20 +88,23 @@
       <button
         (click)="prevPage()"
         [disabled]="pageNumber === 1"
-        [ngStyle]="{ cursor: pageNumber === 1 ? 'disabled' : 'pointer' }"
+        [ngStyle]="{ cursor: pageNumber === 1 ? 'not-allowed' : 'pointer' }"
       >
         Prev
       </button>
       <button
         (click)="nextPage()"
         [disabled]="pageNumber === lastPage"
-        [ngStyle]="{ cursor: pageNumber === lastPage ? 'disabled' : 'pointer' }"
+        [ngStyle]="{
+          cursor: pageNumber === lastPage ? 'not-allowed' : 'pointer'
+        }"
       >
         Next
       </button>
       <button
         [ngStyle]="{
-          background: pageNumber === lastPage ? 'rgb(214, 212, 212)' : ''
+          background: pageNumber === lastPage ? 'rgb(214, 212, 212)' : '',
+          cursor: pageNumber === lastPage ? 'not-allowed' : ''
         }"
         (click)="pageNumber = lastPage; pageChange()"
       >

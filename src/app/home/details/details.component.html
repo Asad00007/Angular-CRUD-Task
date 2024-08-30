@@ -6,10 +6,7 @@
   <p>{{ postDetails.description }}</p>
   <h2>Image</h2>
   <img
-    [src]="
-      postDetails.image_path ||
-      'https://salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled.png'
-    "
+    [src]="'http://127.0.0.1:8000/' + postDetails.image_path"
     alt=""
     class="image"
   />
